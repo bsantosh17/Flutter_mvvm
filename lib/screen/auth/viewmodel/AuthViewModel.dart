@@ -18,6 +18,7 @@ class AuthViewModel extends ChangeNotifier {
 
     try {
       final response = await apiService.LoginInt(username, password);
+      print("ResponseCheck ${response.toString()}" );
       if (response.accessToken != null) {
         //SharePreference
         await AuthHelper.saveLogin(username);

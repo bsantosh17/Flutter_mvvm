@@ -92,8 +92,7 @@ class _MyLoginState extends State<MyLogin> {
                                 return;
                               }
 
-                               
-                               authViewModel.LoginIntegration(context,
+                              authViewModel.LoginIntegration(context,
                                    emailController.text.toString(),
                                passwordController.text.toString());
                              })

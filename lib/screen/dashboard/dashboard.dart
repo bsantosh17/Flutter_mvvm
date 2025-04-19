@@ -141,16 +141,7 @@ class _MyDashboardState extends State<MyDashboard> {
           ],
         ),
       ),
-      body: _Screen[_selectedIndex],
-      bottomNavigationBar: BottomNavigationBar(
-        currentIndex: _selectedIndex,
-        onTap: _onSelectDrawerItem,
-        items: const [
-          BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
-          BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Profile'),
-          BottomNavigationBarItem(icon: Icon(Icons.settings), label: 'Settings'),
-        ],
-      )
+      body: _Screen[_selectedIndex]
     );
   }
 }

@@ -3,27 +3,28 @@ import 'package:flutter_new/data/sharepreference/AuthHelper.dart';
 import 'package:flutter_new/screen/auth/login.dart';
 import 'package:flutter_new/screen/auth/viewmodel/AuthViewModel.dart';
 import 'package:flutter_new/screen/dashboard/dashboard.dart';
-import 'package:flutter_new/screen/dashboard/home_screen.dart';
-import 'package:flutter_new/screen/dashboard/profile_screen.dart';
-import 'package:flutter_new/screen/dashboard/setting_screen.dart';
+import 'package:flutter_new/screen/dashboard/viewModel/HomeViewModel.dart';
+import 'package:flutter_new/screen/dashboard/viewModel/ProfileViewModel.dart';
+import 'package:flutter_new/screen/dashboard/viewModel/SettingViewModel.dart';
 import 'package:provider/provider.dart';
 
 
 void main() async{
 
   WidgetsFlutterBinding.ensureInitialized(); // Ensure binding is initialized
-
-  // Check if the user is logged in
   bool loggedIn = await AuthHelper.isLoggedIn();
-  final username = await AuthHelper.getUsername();
-
 
 
   runApp(
-    ChangeNotifierProvider(
-      create: (context) => AuthViewModel(),
+    MultiProvider(
+        providers: [
+            ChangeNotifierProvider(create: (_) => AuthViewModel()),
+            ChangeNotifierProvider(create: (_) => ProfileViewModel()),
+            ChangeNotifierProvider(create: (_) => HomeViewModel()),
+            ChangeNotifierProvider(create: (_) => SettingViewModel()),
+        ],
       child: MyApp(loggedIn: loggedIn),
-    ),
+    )
   );
 }
 
@@ -42,7 +43,6 @@ class MyApp extends StatelessWidget {
       routes: {
         'login': (context) => MyLogin(),
         'dashboard' : (context) => MyDashboard(),
-
 
       },
 
