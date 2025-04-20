@@ -7,11 +7,19 @@ import 'package:flutter_new/screen/dashboard/viewModel/HomeViewModel.dart';
 import 'package:flutter_new/screen/dashboard/viewModel/ProfileViewModel.dart';
 import 'package:flutter_new/screen/dashboard/viewModel/SettingViewModel.dart';
 import 'package:provider/provider.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'core/firebase/notification_service.dart';
+
+
 
 
 void main() async{
 
   WidgetsFlutterBinding.ensureInitialized(); // Ensure binding is initialized
+  await Firebase.initializeApp();
+
+  await NotificationService.initialize();
+
   bool loggedIn = await AuthHelper.isLoggedIn();
 
 
